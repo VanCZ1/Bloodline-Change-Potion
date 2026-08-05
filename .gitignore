@@ -1,0 +1,9 @@
+# dot folders
+.vscode/
+
+# folders
+build/
+
+# files
+*.zip
+*.pex

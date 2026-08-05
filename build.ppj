@@ -1,0 +1,32 @@
+<?xml version='1.0'?><!-- Game is either sse, tesv, or fo4 -->
+<PapyrusProject xmlns="PapyrusProject.xsd"
+    Flags="TESV_Papyrus_Flags.flg"
+    Game="sse"
+    Output="Scripts"
+    Optimize="true"
+    Anonymize="true">
+    <Variables>
+        <Variable Name="ProjectName" Value="Bloodline Change Potion"/>
+        <Variable Name="ProjectVersion" Value="1.0.0"/>
+        <Variable Name="ProjectPath" Value="."/>
+        <Variable Name="ModsPath" Value=".."/>
+        <Variable Name="CKPath" Value="E:\SteamLibrary\steamapps\common\Skyrim Special Edition"/>
+        <Variable Name="OutputPath" Value="${SKYRIM_MODS_PATH}\@ProjectName @ProjectVersion"/>
+    </Variables>
+    <Imports>
+        <!-- Project -->
+		<Import>@ProjectPath\Source\Scripts</Import>
+        <!-- Mods -->
+        <!-- <Import>@ModsPath\SKSE64\Source\Scripts</Import> -->
+        <!-- Vanilla -->
+        <Import>@CKPath\Data\Source\Scripts\</Import>
+    </Imports>
+    <Folders>
+        <Folder>@ProjectPath\Source\Scripts</Folder>
+    </Folders>
+    <PostBuildEvent Description="Copy files to output path." UseInBuild="true">
+        <Command>if defined SKYRIM_MODS_PATH (robocopy "@ProjectPath\dist" "@OutputPath" /E /R:0 /W:0 &gt;nul 2&gt;&amp;1 &amp; if errorlevel 8 echo ERROR: dist copy failed!)</Command>
+        <Command>if defined SKYRIM_MODS_PATH (robocopy "@ProjectPath\Scripts" "@OutputPath\Scripts" /E /R:0 /W:0 &gt;nul 2&gt;&amp;1 &amp; if errorlevel 8 echo ERROR: Scripts copy failed!)</Command>
+        <Command>if defined SKYRIM_MODS_PATH (robocopy "@ProjectPath\Source" "@OutputPath\Source" /E /R:0 /W:0 &gt;nul 2&gt;&amp;1 &amp; if errorlevel 8 echo ERROR: Source copy failed!)</Command>
+    </PostBuildEvent>
+</PapyrusProject>
