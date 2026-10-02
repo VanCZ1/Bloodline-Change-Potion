@@ -24,6 +24,9 @@
     <Folders>
         <Folder>@ProjectPath\Source\Scripts</Folder>
     </Folders>
+    <PreBuildEvent Description="Generate translation files." UseInBuild="true">
+        <Command>cmd /D /Q /V:ON /C "for %F in ("@ProjectPath\dist\Interface\Translations\*_ENGLISH.txt") do if exist "%~fF" if not exist "%~fF\" (set "name=%~nF" &amp; for %L in (CHINESE FRENCH GERMAN ITALIAN JAPANESE POLISH RUSSIAN SPANISH) do (copy /B /Y "%~fF" "%~dpF!name:~0,-8!_%L.txt" &gt;nul || (echo ERROR: Translation copy failed for "%~fF" to %L. &gt;&amp;2 &amp; exit /b 1)))"</Command>
+    </PreBuildEvent>
     <PostBuildEvent Description="Copy files to output path." UseInBuild="true">
         <Command>if defined SKYRIM_MODS_PATH (robocopy "@ProjectPath\dist" "@OutputPath" /E /R:0 /W:0 &gt;nul 2&gt;&amp;1 &amp; if errorlevel 8 echo ERROR: dist copy failed!)</Command>
         <Command>if defined SKYRIM_MODS_PATH (robocopy "@ProjectPath\Scripts" "@OutputPath\Scripts" /E /R:0 /W:0 &gt;nul 2&gt;&amp;1 &amp; if errorlevel 8 echo ERROR: Scripts copy failed!)</Command>
