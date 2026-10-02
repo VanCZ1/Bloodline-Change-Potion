@@ -7,7 +7,7 @@
     Anonymize="true">
     <Variables>
         <Variable Name="ProjectName" Value="Bloodline Change Potion"/>
-        <Variable Name="ProjectVersion" Value="1.0.0"/>
+        <Variable Name="ProjectVersion" Value="1.1.0"/>
         <Variable Name="ProjectPath" Value="."/>
         <Variable Name="ModsPath" Value=".."/>
         <Variable Name="CKPath" Value="E:\SteamLibrary\steamapps\common\Skyrim Special Edition"/>
